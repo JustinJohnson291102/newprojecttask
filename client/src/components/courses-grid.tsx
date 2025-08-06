@@ -62,13 +62,8 @@ export default function CoursesGrid({
   }
 
   return (
-    <section className="py-20 section-bg-1 parallax-bg relative overflow-hidden" data-testid="courses-grid">
-      {/* Animated Background Elements */}
-      <div className="absolute top-20 right-10 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-xl animate-float" />
-      <div className="absolute bottom-20 left-10 w-56 h-56 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-xl animate-pulse-slow" />
-      <div className="absolute top-1/3 right-1/4 w-28 h-28 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-full blur-lg animate-sparkle" />
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-20 bg-white" data-testid="courses-grid">
+      <div className="container mx-auto px-4">
         {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -77,32 +72,21 @@ export default function CoursesGrid({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h3 
-            className="text-secondary text-lg font-semibold mb-2 bg-gradient-to-r from-secondary to-orange-500 bg-clip-text text-transparent"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
+          <h3 className="text-secondary text-lg font-semibold mb-2">
             Trending Courses
-          </motion.h3>
-          <motion.h2
+          </h3>
+          <h2
             className="text-4xl font-bold text-neutral-900 mb-4"
             data-testid="courses-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
           >
             {title}
-          </motion.h2>
-          <motion.p
+          </h2>
+          <p
             className="text-xl text-neutral-600 max-w-2xl mx-auto"
             data-testid="courses-subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
           >
             {subtitle}
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Search and Filters */}

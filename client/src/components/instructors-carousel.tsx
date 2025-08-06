@@ -37,13 +37,8 @@ export default function InstructorsCarousel({
   }
 
   return (
-    <section className="py-20 section-bg-2 parallax-bg relative overflow-hidden" data-testid="instructors-carousel">
-      {/* Animated Background Elements */}
-      <div className="absolute top-16 left-16 w-36 h-36 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-full blur-xl animate-float" />
-      <div className="absolute bottom-16 right-16 w-52 h-52 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-full blur-xl animate-pulse-slow" />
-      <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-gradient-to-r from-rose-500/10 to-pink-500/10 rounded-full blur-lg animate-sparkle" />
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-20 bg-white" data-testid="instructors-carousel">
+      <div className="container mx-auto px-4">
         {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -52,32 +47,13 @@ export default function InstructorsCarousel({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h3 
-            className="text-secondary text-lg font-semibold mb-2 bg-gradient-to-r from-secondary to-orange-500 bg-clip-text text-transparent"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
-            Skilled Introduce
-          </motion.h3>
-          <motion.h2 
-            className="text-4xl font-bold text-neutral-900 mb-4" 
-            data-testid="instructors-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
+          <h3 className="text-secondary text-lg font-semibold mb-2">Skilled Introduce</h3>
+          <h2 className="text-4xl font-bold text-neutral-900 mb-4" data-testid="instructors-title">
             Our Top Class & Expert Instructors in One Place
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-neutral-600 max-w-2xl mx-auto" 
-            data-testid="instructors-subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
+          </h2>
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto" data-testid="instructors-subtitle">
             Learn from top-class, expert instructors all in one place with KnowledgeWaveIndia.
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Instructors Grid */}

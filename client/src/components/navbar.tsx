@@ -57,7 +57,7 @@ export default function Navbar() {
               >
                 <GraduationCap className="h-8 w-8 text-primary group-hover:text-secondary transition-colors duration-300" />
               </motion.div>
-              <span className="text-2xl font-bold text-primary group-hover:text-shimmer-gold transition-all duration-300">
+              <span className="text-2xl font-bold text-primary">
                 Knowledge Wave India
               </span>
             </motion.div>

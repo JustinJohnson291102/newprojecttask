@@ -35,10 +35,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Brand Partners */}
-      <section className="py-16 section-bg-1 parallax-bg relative overflow-hidden" data-testid="brand-partners">
-        {/* Animated Background Elements */}
-        <div className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-full blur-xl animate-float" />
-        <div className="absolute bottom-10 left-10 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-xl animate-pulse-slow" />
+      <section className="py-16 bg-neutral-100" data-testid="brand-partners">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
