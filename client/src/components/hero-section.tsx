@@ -51,61 +51,26 @@ export default function HeroSection() {
         <div className="w-8 h-8 bg-white/20 rounded-full animate-sparkle" />
       </motion.div>
 
-      {/* Enhanced Floating Particles */}
-      {[...Array(12)].map((_, i) => (
+      {/* Floating Particles */}
+      {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className={`absolute w-${Math.floor(Math.random() * 3) + 1} h-${Math.floor(Math.random() * 3) + 1} bg-white/40 rounded-full`}
+          className="absolute w-2 h-2 bg-white/30 rounded-full"
           style={{
-            top: `${15 + (i * 8)}%`,
-            left: `${5 + (i * 7)}%`,
+            top: `${20 + (i * 10)}%`,
+            left: `${10 + (i * 8)}%`,
           }}
           animate={{
-            y: [0, -40, 0],
-            x: [0, Math.random() * 20 - 10, 0],
-            opacity: [0.2, 1, 0.2],
-            scale: [1, 1.8, 1],
-            rotate: [0, 180, 360],
+            y: [0, -30, 0],
+            opacity: [0.3, 1, 0.3],
+            scale: [1, 1.5, 1],
           }}
           transition={{
-            duration: 4 + (i * 0.3),
+            duration: 3 + (i * 0.5),
             repeat: Infinity,
-            delay: i * 0.15,
-            ease: "easeInOut",
+            delay: i * 0.2,
           }}
         />
-      ))}
-
-      {/* Interactive Learning Icons */}
-      {[
-        { icon: "📚", top: "20%", left: "15%" },
-        { icon: "🎓", top: "60%", right: "20%" },
-        { icon: "💡", top: "30%", right: "15%" },
-        { icon: "🚀", bottom: "25%", left: "12%" },
-        { icon: "⭐", top: "70%", left: "20%" },
-      ].map((item, i) => (
-        <motion.div
-          key={i}
-          className="absolute text-2xl opacity-60 hover:opacity-100 cursor-pointer"
-          style={item}
-          animate={{
-            y: [0, -15, 0],
-            rotate: [0, 10, -10, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 3 + (i * 0.4),
-            repeat: Infinity,
-            delay: i * 0.3,
-          }}
-          whileHover={{
-            scale: 1.5,
-            rotate: 360,
-            transition: { duration: 0.3 }
-          }}
-        >
-          {item.icon}
-        </motion.div>
       ))}
 
       <div className="container mx-auto px-4 relative z-10">
@@ -190,51 +155,31 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link href="/packages">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <Button
+                  size="lg"
+                  className="btn-secondary text-white font-semibold text-lg px-8 py-4 group"
+                  data-testid="hero-enroll-button"
                 >
-                  <Button
-                    size="lg"
-                    className="btn-secondary btn-glow text-white font-semibold text-lg px-8 py-4 group relative overflow-hidden"
-                    data-testid="hero-enroll-button"
-                  >
-                    <span className="relative z-10">Enroll Now</span>
-                    <motion.div
-                      className="ml-2 relative z-10"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <ArrowRight
-                        className="group-hover:translate-x-2 transition-transform duration-300"
-                        size={20}
-                      />
-                    </motion.div>
-                  </Button>
-                </motion.div>
+                  Enroll Now
+                  <ArrowRight
+                    className="ml-2 group-hover:translate-x-1 transition-transform"
+                    size={20}
+                  />
+                </Button>
               </Link>
 
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-black hover:bg-white/10 font-semibold text-lg px-8 py-4 group"
+                data-testid="hero-watch-demo"
               >
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-white/30 text-white hover:bg-white/10 font-semibold text-lg px-8 py-4 group glass-morphism"
-                  data-testid="hero-watch-demo"
-                >
-                  <div className="mr-2 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
-                    <motion.div
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <Play className="text-white" size={20} />
-                    </motion.div>
-                  </div>
-                  Watch Demo
-                </Button>
-              </motion.div>
+                <Play
+                  className="mr-2 group-hover:scale-110 transition-transform"
+                  size={20}
+                />
+                Watch Demo
+              </Button>
             </motion.div>
 
             {/* Stats */}
