@@ -1,12 +1,16 @@
 import { randomUUID } from "crypto";
 
-// Type definitions
+// Type definitions matching the database schema
 export interface Course {
   id: string;
   title: string;
-  description?: string;
-  category: string;
-  createdAt: Date;
+  description?: string | null;
+  thumbnail?: string | null;
+  lessons?: number | null;
+  rating?: string | null;
+  category?: string | null;
+  instructorId?: string | null;
+  createdAt?: Date | null;
 }
 
 export interface InsertCourse extends Omit<Course, "id" | "createdAt"> {}
@@ -14,15 +18,15 @@ export interface InsertCourse extends Omit<Course, "id" | "createdAt"> {}
 export interface Package {
   id: string;
   title: string;
-  description: string;
-  image: string;
-  originalPrice: string;
-  discountedPrice: string;
-  category: string;
-  rating: string;
-  features: string[];
-  courseIds: string[];
-  createdAt: Date;
+  description?: string | null;
+  image?: string | null;
+  originalPrice?: string | null;
+  discountedPrice?: string | null;
+  category?: string | null;
+  rating?: string | null;
+  features?: string[] | null;
+  courseIds?: string[] | null;
+  createdAt?: Date | null;
 }
 
 export interface InsertPackage extends Omit<Package, "id" | "createdAt"> {}
@@ -31,11 +35,11 @@ export interface Instructor {
   id: string;
   name: string;
   title: string;
-  bio: string;
-  avatar: string;
-  rating: string;
-  expertise: string[];
-  createdAt: Date;
+  bio?: string | null;
+  avatar?: string | null;
+  rating?: string | null;
+  expertise?: string[] | null;
+  createdAt?: Date | null;
 }
 
 export interface InsertInstructor extends Omit<Instructor, "id" | "createdAt"> {}
@@ -44,7 +48,10 @@ export interface User {
   id: string;
   username: string;
   email: string;
-  createdAt: Date;
+  password: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  createdAt?: Date | null;
 }
 
 export interface InsertUser extends Omit<User, "id" | "createdAt"> {}
@@ -52,8 +59,9 @@ export interface InsertUser extends Omit<User, "id" | "createdAt"> {}
 export interface Enrollment {
   id: string;
   userId: string;
-  courseId: string;
-  enrolledAt: Date;
+  packageId?: string | null;
+  courseId?: string | null;
+  enrolledAt?: Date | null;
 }
 
 export interface InsertEnrollment extends Omit<Enrollment, "id" | "enrolledAt"> {}
@@ -61,93 +69,141 @@ export interface InsertEnrollment extends Omit<Enrollment, "id" | "enrolledAt"> 
 export interface Newsletter {
   id: string;
   email: string;
-  subscribedAt: Date;
+  subscribedAt?: Date | null;
 }
 
-// Sample data
+// Sample data with correct types
 const sampleCourses: Course[] = [
   {
     id: "1",
     title: "Intro to Web Development",
-    description: "Learn the basics of HTML, CSS, and JS.",
+    description: "Learn the basics of HTML, CSS, and JavaScript to build modern websites.",
+    thumbnail: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 12,
+    rating: "4.8",
     category: "Development",
+    instructorId: "1",
     createdAt: new Date(),
   },
   {
     id: "2",
-    title: "Digital Marketing 101",
-    description: "Master the basics of online marketing.",
+    title: "Digital Marketing Mastery",
+    description: "Master the fundamentals of digital marketing and grow your online presence.",
+    thumbnail: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 15,
+    rating: "4.7",
     category: "Marketing",
+    instructorId: "2",
     createdAt: new Date(),
   },
   {
     id: "3",
     title: "Finance Fundamentals",
-    description: "Understand the core principles of finance.",
+    description: "Understand the core principles of personal and business finance.",
+    thumbnail: "https://images.unsplash.com/photo-1553484771-371a605b060b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 10,
+    rating: "4.9",
     category: "Finance",
+    instructorId: "3",
     createdAt: new Date(),
   },
   {
     id: "4",
     title: "React for Beginners",
-    description: "Learn React.js with real-world examples.",
+    description: "Learn React.js from scratch with hands-on projects and real-world examples.",
+    thumbnail: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 18,
+    rating: "4.8",
     category: "Development",
+    instructorId: "1",
     createdAt: new Date(),
   },
   {
     id: "5",
-    title: "Stock Market Basics",
-    description: "Get started with investing and trading.",
+    title: "Stock Market Investing",
+    description: "Learn how to invest in stocks and build a profitable investment portfolio.",
+    thumbnail: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 14,
+    rating: "4.6",
     category: "Finance",
+    instructorId: "3",
     createdAt: new Date(),
   },
   {
     id: "6",
-    title: "YouTube Growth Mastery",
-    description: "Grow your channel with proven techniques.",
+    title: "YouTube Content Creation",
+    description: "Create engaging YouTube content and grow your channel from zero to hero.",
+    thumbnail: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 16,
+    rating: "4.7",
     category: "Creative",
+    instructorId: "7",
     createdAt: new Date(),
   },
   {
     id: "7",
-    title: "Instagram Reels Masterclass",
-    description: "Create viral Reels and build your brand.",
-    category: "Creative",
+    title: "Instagram Marketing Strategy",
+    description: "Build your brand on Instagram with proven marketing strategies and tactics.",
+    thumbnail: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 11,
+    rating: "4.5",
+    category: "Marketing",
+    instructorId: "2",
     createdAt: new Date(),
   },
   {
     id: "8",
-    title: "Machine Learning A-Z",
-    description: "Beginner to expert in ML and AI.",
+    title: "Machine Learning Fundamentals",
+    description: "Introduction to machine learning concepts, algorithms, and practical applications.",
+    thumbnail: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 22,
+    rating: "4.9",
     category: "Technology",
+    instructorId: "5",
     createdAt: new Date(),
   },
   {
     id: "9",
-    title: "Python Programming Bootcamp",
-    description: "Complete Python course from beginner to advanced.",
+    title: "Python Programming Complete Course",
+    description: "Master Python programming from beginner to advanced level with practical projects.",
+    thumbnail: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 25,
+    rating: "4.8",
     category: "Development",
+    instructorId: "8",
     createdAt: new Date(),
   },
   {
     id: "10",
-    title: "Data Science Masterclass",
-    description: "Learn data analysis, visualization, and machine learning.",
+    title: "Data Science with Python",
+    description: "Learn data analysis, visualization, and machine learning using Python.",
+    thumbnail: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 20,
+    rating: "4.7",
     category: "Technology",
+    instructorId: "5",
     createdAt: new Date(),
   },
   {
     id: "11",
-    title: "UI/UX Design Fundamentals",
-    description: "Master user interface and user experience design.",
+    title: "UI/UX Design Masterclass",
+    description: "Master user interface and user experience design principles and tools.",
+    thumbnail: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 17,
+    rating: "4.9",
     category: "Design",
+    instructorId: "4",
     createdAt: new Date(),
   },
   {
     id: "12",
     title: "Business Strategy & Planning",
-    description: "Learn strategic thinking and business planning.",
+    description: "Learn strategic thinking, business planning, and execution methodologies.",
+    thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    lessons: 13,
+    rating: "4.6",
     category: "Business",
+    instructorId: "6",
     createdAt: new Date(),
   },
 ];
@@ -344,6 +400,7 @@ class MemStorage {
   newsletters = new Map<string, Newsletter>();
 
   constructor() {
+    // Initialize with sample data
     sampleCourses.forEach(course => this.courses.set(course.id, course));
     samplePackages.forEach(pkg => this.packages.set(pkg.id, pkg));
     sampleInstructors.forEach(instructor => this.instructors.set(instructor.id, instructor));
@@ -363,7 +420,12 @@ class MemStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = randomUUID();
-    const user: User = { ...insertUser, id, createdAt: new Date() };
+    const user: User = { 
+      ...insertUser, 
+      id, 
+      password: insertUser.password || '', 
+      createdAt: new Date() 
+    };
     this.users.set(id, user);
     return user;
   }
@@ -384,7 +446,9 @@ class MemStorage {
   }
 
   async getCoursesByCategory(category: string): Promise<Course[]> {
-    return Array.from(this.courses.values()).filter(course => course.category === category);
+    return Array.from(this.courses.values()).filter(course => 
+      course.category?.toLowerCase() === category.toLowerCase()
+    );
   }
 
   async searchCourses(query: string): Promise<Course[]> {
