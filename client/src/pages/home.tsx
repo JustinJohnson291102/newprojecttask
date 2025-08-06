@@ -35,7 +35,10 @@ export default function Home() {
       <HeroSection />
 
       {/* Brand Partners */}
-      <section className="py-16 bg-neutral-100" data-testid="brand-partners">
+      <section className="py-16 section-bg-1 parallax-bg relative overflow-hidden" data-testid="brand-partners">
+        {/* Animated Background Elements */}
+        <div className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-full blur-xl animate-float" />
+        <div className="absolute bottom-10 left-10 w-40 h-40 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-xl animate-pulse-slow" />
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -56,12 +59,17 @@ export default function Home() {
             {brandPartners.map((logo, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.1, y: -5 }}
+                initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                whileHover={{ 
+                  scale: 1.15, 
+                  y: -8,
+                  rotateY: 5,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.15)"
+                }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex-shrink-0 brand-logo bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
+                className="flex-shrink-0 brand-logo bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer"
               >
                 <img
                   src={logo}

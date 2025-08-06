@@ -54,9 +54,14 @@ export default function PackagesGrid({
   }
 
   return (
-    <section className="py-20 bg-white" data-testid="packages-grid">
-      <div className="container mx-auto px-4">
-        {/* Header */}
+    <section className="py-20 packages-bg parallax-bg relative overflow-hidden" data-testid="packages-grid">
+      {/* Animated Background Elements */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-xl animate-float" />
+      <div className="absolute bottom-10 right-10 w-48 h-48 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 rounded-full blur-xl animate-pulse-slow" />
+      <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-r from-green-500/10 to-teal-500/10 rounded-full blur-lg animate-sparkle" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,13 +69,34 @@ export default function PackagesGrid({
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h3 className="text-secondary text-lg font-semibold mb-2">Top Class Packages</h3>
-          <h2 className="text-4xl font-bold text-neutral-900 mb-4" data-testid="packages-title">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="inline-block"
+          >
+            <h3 className="text-secondary text-lg font-semibold mb-2 bg-gradient-to-r from-secondary to-orange-500 bg-clip-text text-transparent">
+              Top Class Packages
+            </h3>
+          </motion.div>
+          <motion.h2 
+            className="text-4xl font-bold text-neutral-900 mb-4" 
+            data-testid="packages-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
             {title}
-          </h2>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto" data-testid="packages-subtitle">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-neutral-600 max-w-2xl mx-auto" 
+            data-testid="packages-subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
             {subtitle}
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Packages Grid */}

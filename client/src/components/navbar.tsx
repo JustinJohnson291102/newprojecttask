@@ -46,12 +46,21 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" data-testid="logo-link">
-            <div className="flex items-center space-x-2">
-              <GraduationCap className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-primary">
+            <motion.div 
+              className="flex items-center space-x-2 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <GraduationCap className="h-8 w-8 text-primary group-hover:text-secondary transition-colors duration-300" />
+              </motion.div>
+              <span className="text-2xl font-bold text-primary group-hover:text-shimmer-gold transition-all duration-300">
                 Knowledge Wave India
               </span>
-            </div>
+            </motion.div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -76,15 +85,27 @@ export default function Navbar() {
                     {item.label} <ChevronDown className="w-4 h-4" />
                   </span>
                   {hoverPackages && (
-                    <div className="absolute top-full mt-2 bg-white shadow-lg rounded-lg z-50 py-2 w-48">
-                      {item.dropdown.map((sub) => (
+                    <motion.div 
+                      className="absolute top-full mt-2 bg-white shadow-xl rounded-lg z-50 py-2 w-48 glass-morphism"
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                    >
+                      {item.dropdown.map((sub, index) => (
                         <Link href={sub.path} key={sub.path}>
-                          <div className="px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                          <motion.div 
+                            className="px-4 py-2 text-sm text-gray-800 hover:bg-gradient-to-r hover:from-secondary/10 hover:to-orange-500/10 transition-all duration-200 cursor-pointer"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.05, duration: 0.2 }}
+                            whileHover={{ x: 5, backgroundColor: "rgba(255, 102, 51, 0.05)" }}
+                          >
                             {sub.label}
-                          </div>
+                          </motion.div>
                         </Link>
                       ))}
-                    </div>
+                    </motion.div>
                   )}
                 </div>
               ) : (
