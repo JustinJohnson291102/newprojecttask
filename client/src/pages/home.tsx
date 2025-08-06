@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Carousel from "@/components/carousel";
+
 import HeroSection from "@/components/hero-section";
 import CoursesGrid from "@/components/courses-grid";
 import PackagesGrid from "@/components/packages-grid";

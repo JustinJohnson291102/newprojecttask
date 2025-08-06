@@ -33,7 +33,7 @@ export default function CoursesGrid({
   const [selectedCategory, setSelectedCategory] = useState("");
 
   const { data: courses = [], isLoading } = useQuery<Course[]>({
-    queryKey: ["/api/courses", selectedCategory, searchQuery],
+    queryKey: ["/api/courses"],
   });
 
   const filteredCourses = limit ? courses.slice(0, limit) : courses;
