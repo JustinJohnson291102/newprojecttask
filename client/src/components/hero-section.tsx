@@ -5,73 +5,9 @@ import { Link } from "wouter";
 
 export default function HeroSection() {
   return (
-    <section className="hero-bg pt-24 pb-16 relative overflow-hidden min-h-screen flex items-center parallax-bg">
-      {/* Animated Background Decorations */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-      
-      {/* Floating Educational Elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-orange-500/15 to-yellow-500/15 rounded-full blur-3xl animate-float" />
-      <div className="absolute top-40 right-20 w-32 h-32 bg-gradient-to-r from-green-500/10 to-teal-500/10 rounded-full blur-2xl animate-sparkle" />
-      <div className="absolute bottom-40 left-20 w-48 h-48 bg-gradient-to-r from-pink-500/10 to-red-500/10 rounded-full blur-2xl animate-morph" />
+    <section className="relative min-h-screen bg-gradient-to-br from-neutral-100 to-white overflow-hidden flex items-center" data-testid="hero-section">
 
-      {/* Advanced Floating Educational Icons */}
-      <motion.div
-        className="absolute top-32 right-32 w-20 h-20 glass-morphism rounded-2xl flex items-center justify-center"
-        animate={{ 
-          y: [0, -25, 0], 
-          rotate: [0, 5, -5, 0],
-          scale: [1, 1.1, 1]
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <GraduationCap className="text-white/80" size={32} />
-      </motion.div>
 
-      <motion.div
-        className="absolute bottom-32 left-24 w-24 h-24 glass-morphism rounded-3xl flex items-center justify-center"
-        animate={{ 
-          rotate: [0, 360],
-          scale: [1, 1.2, 1],
-          opacity: [0.6, 1, 0.6]
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-      >
-        <Play className="text-secondary" size={36} />
-      </motion.div>
-
-      <motion.div
-        className="absolute top-52 left-40 w-16 h-16 bg-gradient-to-r from-yellow-400/30 to-orange-500/30 rounded-full flex items-center justify-center animate-glow"
-        animate={{ 
-          scale: [1, 1.3, 1],
-          rotate: [0, 180, 360]
-        }}
-        transition={{ duration: 3, repeat: Infinity }}
-      >
-        <div className="w-8 h-8 bg-white/20 rounded-full animate-sparkle" />
-      </motion.div>
-
-      {/* Floating Particles */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-white/30 rounded-full"
-          style={{
-            top: `${20 + (i * 10)}%`,
-            left: `${10 + (i * 8)}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.3, 1, 0.3],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: 3 + (i * 0.5),
-            repeat: Infinity,
-            delay: i * 0.2,
-          }}
-        />
-      ))}
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -80,7 +16,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white"
+            className="text-gray-900"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -88,10 +24,10 @@ export default function HeroSection() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="flex items-center gap-2 mb-6"
             >
-              <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                <GraduationCap className="text-white" size={24} />
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                <GraduationCap className="text-primary" size={24} />
               </div>
-              <span className="text-lg font-medium opacity-90">
+              <span className="text-lg font-medium text-gray-700">
                 Premium Learning Platform
               </span>
             </motion.div>
@@ -123,7 +59,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.9, duration: 0.6 }}
-                className="text-white"
+                className="text-gray-900"
               >
                 Never Stop{" "}
               </motion.span>
@@ -131,7 +67,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1, duration: 0.6 }}
-                className="text-blue-400"
+                className="text-blue-600"
               >
                 Teaching
               </motion.span>
@@ -141,7 +77,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-xl lg:text-2xl mb-8 opacity-90 leading-relaxed text-[#4B2E2E]"
+              className="text-xl lg:text-2xl mb-8 leading-relaxed text-gray-700"
               data-testid="hero-description"
             >
               Every teaching and learning journey is unique. Following We'll
@@ -171,7 +107,7 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white/30 text-black hover:bg-white/10 font-semibold text-lg px-8 py-4 group"
+                className="border-gray-300 text-gray-800 hover:bg-gray-100 font-semibold text-lg px-8 py-4 group"
                 data-testid="hero-watch-demo"
               >
                 <Play
@@ -191,33 +127,30 @@ export default function HeroSection() {
             >
               <div className="text-center">
                 <div
-                  className="text-3xl font-bold mb-1"
+                  className="text-3xl font-bold mb-1 text-gray-800"
                   data-testid="hero-stat-students"
-                  style={{ color: '#5C4033' }}
                 >
                   80K+
                 </div>
-                <div className="text-sm opacity-80" style={{ color: '#5C4033' }}>Active Students</div>
+                <div className="text-sm opacity-80 text-gray-600">Active Students</div>
               </div>
               <div className="text-center">
                 <div
-                  className="text-3xl font-bold mb-1"
-                  style={{ color: '#5C4033' }}
+                  className="text-3xl font-bold mb-1 text-gray-800"
                   data-testid="hero-stat-courses"
                 >
                   80+
                 </div>
-                <div className="text-sm opacity-80" style={{ color: '#5C4033' }}>Expert Courses</div>
+                <div className="text-sm opacity-80 text-gray-600">Expert Courses</div>
               </div>
               <div className="text-center">
                 <div
-                  className="text-3xl font-bold mb-1"
-                  style={{ color: '#5C4033' }}
+                  className="text-3xl font-bold mb-1 text-gray-800"
                   data-testid="hero-stat-instructors"
                 >
                   80+
                 </div>
-                <div className="text-sm opacity-80" style={{ color: '#5C4033' }}>Top Instructors</div>
+                <div className="text-sm opacity-80 text-gray-600">Top Instructors</div>
               </div>
             </motion.div>
           </motion.div>
