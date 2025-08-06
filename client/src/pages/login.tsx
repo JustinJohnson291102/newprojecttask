@@ -88,7 +88,7 @@ export default function Login() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Card className="shadow-2xl">
+            <Card className="shadow-2xl mt-10">
               <CardContent className="p-8 lg:p-12">
                 <div className="text-center mb-8">
                   <h1 className="text-3xl font-bold text-neutral-900 mb-2" data-testid="login-title">

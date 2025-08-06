@@ -32,9 +32,15 @@ export default function CoursesGrid({
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const { data: courses = [], isLoading } = useQuery<Course[]>({
-    queryKey: ["/api/courses"],
-  });
+  const { data: courses = [], isLoading, isError } = useQuery<Course[]>({
+  queryKey: ["/api/courses"],
+  queryFn: async () => {
+    const res = await fetch("/api/courses");
+    if (!res.ok) throw new Error("Failed to fetch courses");
+    return res.json();
+  },
+});
+
 
   const filteredCourses = limit ? courses.slice(0, limit) : courses;
 

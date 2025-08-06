@@ -127,16 +127,9 @@ export default function Packages() {
                     <CardContent className="p-6">
                       <div className="flex items-center gap-2 mb-3">
                         <Badge className="bg-primary text-white">
-                      src={pkg.image || `https://images.unsplash.com/photo-${
-                        [
-                          "1553484771-371a605b060b",
-                          "1516321318423-f06f85e504b3",
-                          "1611224923853-80b023f02d71",
-                          "1557804506-669a67965ba0",
-                          "1573164713988-8665fc963095"
-                        ][index % 5]
-                      }?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300`}
-                        </Badge>
+  {pkg.category || "Featured"}
+</Badge>
+
                         <div className="flex items-center text-yellow-400 text-sm">
                           <Star className="fill-current" size={14} />
                           <span className="ml-1" data-testid={`package-rating-${pkg.id}`}>

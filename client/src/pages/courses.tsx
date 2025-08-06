@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { Search, Filter, Star, Clock, Users, BookOpen } from "lucide-react";
+import { Search, Filter, Star, Clock, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Link } from "wouter";
 import type { Course } from "@shared/schema";
 
@@ -17,9 +23,25 @@ export default function Courses() {
 
   const { data: courses = [], isLoading, error } = useQuery<Course[]>({
     queryKey: ["/api/courses", selectedCategory, searchQuery],
+    queryFn: async () => {
+      const res = await fetch("/api/courses");
+      if (!res.ok) throw new Error("Failed to fetch courses");
+      return res.json();
+    },
   });
 
-  const categories = ["All", "Development", "Design", "Business", "Marketing", "Finance", "Technology"];
+  if (error) console.error("Failed to load courses:", error);
+
+  const categories = [
+    "All",
+    "Development",
+    "Design",
+    "Business",
+    "Marketing",
+    "Finance",
+    "Technology",
+  ];
+
   const sortOptions = [
     { value: "popular", label: "Most Popular" },
     { value: "newest", label: "Newest First" },
@@ -28,14 +50,22 @@ export default function Courses() {
   ];
 
   const filteredAndSortedCourses = courses
-    .filter(course => 
-      (!searchQuery || course.title.toLowerCase().includes(searchQuery.toLowerCase())) &&
-      (!selectedCategory || selectedCategory === "all" || selectedCategory === "All" || course.category === selectedCategory)
+    .filter(
+      (course) =>
+        (!searchQuery ||
+          course.title.toLowerCase().includes(searchQuery.toLowerCase())) &&
+        (!selectedCategory ||
+          selectedCategory === "all" ||
+          selectedCategory === "All" ||
+          course.category === selectedCategory)
     )
     .sort((a, b) => {
       switch (sortBy) {
         case "newest":
-          return new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime();
+          return (
+            new Date(b.createdAt!).getTime() -
+            new Date(a.createdAt!).getTime()
+          );
         case "rating":
           return parseFloat(b.rating!) - parseFloat(a.rating!);
         case "title":
@@ -49,7 +79,9 @@ export default function Courses() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-neutral-100">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Failed to Load Courses</h2>
+          <h2 className="text-2xl font-bold text-neutral-900 mb-4">
+            Failed to Load Courses
+          </h2>
           <p className="text-neutral-600">Please try again later.</p>
         </div>
       </div>
@@ -70,7 +102,10 @@ export default function Courses() {
             <h1 className="text-5xl font-bold mb-6" data-testid="courses-hero-title">
               Explore Our <span className="text-secondary">Courses</span>
             </h1>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto" data-testid="courses-hero-subtitle">
+            <p
+              className="text-xl opacity-90 max-w-2xl mx-auto"
+              data-testid="courses-hero-subtitle"
+            >
               Discover a world of knowledge with our comprehensive course collection designed by industry experts.
             </p>
           </motion.div>
@@ -100,7 +135,7 @@ export default function Courses() {
                   />
                 </div>
               </div>
-              
+
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                 <SelectTrigger data-testid="category-filter">
                   <SelectValue placeholder="All Categories" />
@@ -216,32 +251,31 @@ export default function Courses() {
                         {course.category}
                       </Badge>
                     </div>
-                    
+
                     <CardContent className="p-6">
                       <h4 className="font-bold text-lg mb-2 line-clamp-2" data-testid={`course-title-${course.id}`}>
                         {course.title}
                       </h4>
-                      
+
                       <p className="text-neutral-600 text-sm mb-4 line-clamp-3">
                         {course.description || "Master new skills with this comprehensive course designed by industry experts."}
                       </p>
-                      
+
                       <div className="flex items-center justify-between mb-4 text-sm text-neutral-600">
                         <div className="flex items-center gap-1">
                           <Clock size={14} />
-                          <span data-testid={`course-lessons-${course.id}`}>{course.lessons || Math.floor(Math.random() * 20) + 5} Lessons</span>
+                          <span data-testid={`course-lessons-${course.id}`}>
+                            {course.lessons || Math.floor(Math.random() * 20) + 5} Lessons
+                          </span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Star className="text-yellow-400 fill-current" size={14} />
                           <span data-testid={`course-rating-${course.id}`}>{course.rating}</span>
                         </div>
                       </div>
-                      
+
                       <Link href={`/courses/${course.id}`}>
-                        <Button 
-                          className="w-full btn-primary text-white"
-                          data-testid={`course-enroll-${course.id}`}
-                        >
+                        <Button className="w-full btn-primary text-white" data-testid={`course-enroll-${course.id}`}>
                           View Course
                         </Button>
                       </Link>

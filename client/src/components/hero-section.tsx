@@ -36,7 +36,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-4xl lg:text-6xl font-bold leading-tight mb-6"
+              className="text-3xl lg:text-5xl font-bold leading-tight mb-6"
               data-testid="hero-title"
             >
               <motion.span
@@ -167,7 +167,7 @@ export default function HeroSection() {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1, delay: 0.4 }}
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300"
                 alt="Professional online learning students collaborating"
                 className="rounded-2xl shadow-2xl w-full h-auto animate-float"
                 data-testid="hero-image"
