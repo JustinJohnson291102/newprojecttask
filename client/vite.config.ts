@@ -4,18 +4,23 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: '.', // Tells Vite the root is current folder
-  build: {
-    outDir: 'dist', // Output folder for build
-    emptyOutDir: true // Clean before build
-  },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src') // Optional: Shorthand import paths like @/components/...
+      '@': path.resolve(__dirname, 'src'),
+      '@shared': path.resolve(__dirname, '../shared')
     }
   },
   server: {
-    port: 3000, // Optional: Dev server port
-    open: true  // Automatically open browser on `npm run dev`
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+    },
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true
   }
 });
